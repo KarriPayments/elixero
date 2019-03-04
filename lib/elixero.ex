@@ -21,16 +21,16 @@ defmodule EliXero do
     end
   end
 
-  def create_client(custon_creds) when is_atom(custon_creds) do
-    case(Application.get_env(:elixero, custon_creds)[:app_type]) do
+  def create_client(custom_creds) when is_atom(custom_creds) do
+    case(Application.get_env(:elixero, custom_creds)[:app_type]) do
       :private_multi -> %EliXero.Client{app_type: :private_multi,
         app_creds: %{
-          oauth_consumer_key: Application.get_env(:elixero, :consumer_key)[:consumer_key],
-          oauth_consumer_secret: Application.get_env(:elixero, :consumer_secret)[:consumer_secret],
-          application_type: Application.get_env(:elixero, :app_type)[:app_type],
-          private_key: Application.get_env(:elixero, :private_key_path)[:private_key_path]
+          oauth_consumer_key: Application.get_env(:elixero, custom_creds)[:consumer_key],
+          oauth_consumer_secret: Application.get_env(:elixero, custom_creds)[:consumer_secret],
+          application_type: Application.get_env(:elixero, custom_creds)[:app_type],
+          private_key: Application.get_env(:elixero, custom_creds)[:private_key_path]
         },
-        access_token: %{"oauth_token" => Application.get_env(:elixero, custon_creds, :consumer_key)}
+        access_token: %{"oauth_token" => Application.get_env(:elixero, custom_creds)[:consumer_key]}
       }
       :private -> raise "Application type not allowed with multiple creds."
       :public -> raise "Application type not allowed with multiple creds."
