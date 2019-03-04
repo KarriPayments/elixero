@@ -27,8 +27,8 @@ defmodule EliXero do
         app_creds: %{
           oauth_consumer_key: Application.get_env(:elixero, custom_creds)[:consumer_key],
           oauth_consumer_secret: Application.get_env(:elixero, custom_creds)[:consumer_secret],
-          application_type: Application.get_env(:elixero, custom_creds)[:app_type],
-          private_key: Application.get_env(:elixero, custom_creds)[:private_key_path]
+          app_type: Application.get_env(:elixero, custom_creds)[:app_type],
+          private_key_path: Application.get_env(:elixero, custom_creds)[:private_key_path]
         },
         access_token: %{"oauth_token" => Application.get_env(:elixero, custom_creds)[:consumer_key]}
       }
